@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "NMR-Reserve-Helper",
+  "version": "2.0",
+  "description": "Assists with reserving the JEOL JNM-ECS400 at UTokyo",
+  "author": "HJ",
+
+  "permissions": [
+    "storage", 
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "https://www.chem.s.u-tokyo.ac.jp/*"
+    ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "NMR Reserve Helper"
+  },
+
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+
+  "web_accessible_resources": [
+    {
+    "resources": ["libs/dayjs.min.js"],
+    "matches": ["https://www.chem.s.u-tokyo.ac.jp/*"]
+  }]
+}

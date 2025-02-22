@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="./libs/dayjs.min.js"></script>
+  <script src="./libs/dayjs-utc.js"></script>
+  <script src="./libs/dayjs-timezone.js"></script>
+  <link rel="stylesheet" href="./styles/popup.css">
+</head>
+<body>
+  <div id="control-panel">
+    <form id="authForm">
+      <div id="date-picker">
+        <div class="date-block">
+          <div class="arrow" id="year-up">&#9650;</div>
+          <div class="value" id="year">0000</div>
+          <div class="arrow" id="year-down">&#9660;</div>
+        </div>
+        <div class="date-block">
+          <div class="arrow" id="month-up">&#9650;</div>
+          <div class="value" id="month">00</div>
+          <div class="arrow" id="month-down">&#9660;</div>
+        </div>
+        <div class="date-block">
+          <div class="arrow" id="day-up">&#9650;</div>
+          <div class="value" id="day">00</div>
+          <div class="arrow" id="day-down">&#9660;</div>
+        </div>
+        <div id="dynamic-text">May your synthesis go well (´・ω・`)</div>
+      </div>
+      <button type="submit" id="fetch">Fetch / Refresh</button>
+      <button id="request">Reserve</button>
+      <input type="checkbox" id="toggle-days-checkbox" hidden>
+      <label for="toggle-days-checkbox" id="toggle-days" class="toggle-button">Toggle Next Day</label>
+    </form>
+    <a href="./info-form/info-form.html"><button class="edit-btn">Edit Info</button></a>
+    <a href="./info-form/web-authenticate.html"><button class="edit-btn">Website Authentication</button></a>
+  </div>
+  <div id="timeline-container">
+    <div id="hour-labels"></div>
+    <div id="timeline"></div>
+  </div>
+  <script type="module" src="./utils/time-renderer.js"></script>
+  <script type="module" src="./utils/drag-utils.js"></script>
+  <script type="module" src="popup.js"></script>
+  <script type="module" src="./utils/reservation-service.js"></script>
+</body>
+</html>

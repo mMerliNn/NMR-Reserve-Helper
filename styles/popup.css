@@ -1,0 +1,320 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0px 10px;
+  background-color: #fff;
+  width: 300px; 
+  cursor: crosshair;
+  box-sizing: border-box;
+}
+  
+h1 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+
+#timeline-container {
+  display: flex; 
+  position: relative;
+  width: 100%;
+  background: linear-gradient(0deg, #f0f0f0 4%, transparent 4%);
+  background-size: 100% calc(960px / 24);
+  height: 960px;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+#hour-labels {
+  width: 40px; 
+  margin-right: 5px;
+  position: relative;
+}
+
+#timeline {
+  position: relative;
+  flex: 1;
+  height: 960px; 
+  outline: 0px solid #ccc;
+  background-color: #f8f6f6;
+  box-sizing: border-box;
+}
+
+.hour-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #ddd;
+  pointer-events: none;
+  z-index: 0;
+  }
+
+  .hour-label {
+  position: absolute;
+  left: 5px;
+  font-size: 0.75rem;
+  font-weight: 600  ;
+  color: #666;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* JS generated blocks */
+.reservation-block {
+  position: absolute;  
+  left: 10px;
+  right: 10px;
+  z-index: 1;
+  background-color: #1976d2;
+  color: #fff;
+  border-radius: 2px;
+  padding: 0px 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: none;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.reservation-block:hover {
+  background-color: #135ba0;
+  pointer-events: auto;
+  }
+
+  .current-time-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.8px; 
+  background-color: #FF7F50;
+  z-index: 2; 
+  pointer-events: none;
+}
+
+.current-time-label {
+  position: absolute;
+  font-size: 10px;
+  color: #FF7F50; 
+  transform: translateY(-100%); 
+  left: 4px; 
+  z-index: 1;
+  pointer-events: none;
+}
+
+.edit-btn {
+  margin-bottom: 4px;
+  padding: 4px; 
+  z-index: 30;
+  cursor: pointer;
+}
+
+.autofill-btn {
+  margin-bottom: 4px;
+  padding: 4px;
+  z-index: 30;
+}
+
+button {
+  margin-bottom: 4px;
+  padding: 4px;
+  z-index: 30;
+}
+
+button:focus, input:focus {
+  border: 2px solid #66CCFF; 
+  border-radius: 4px;
+}
+
+/* User selected reservation time */
+.selection-rectangle {
+  position: absolute;
+  background-color: rgba(0, 123, 255, 0.3);
+  border: 1px solid #007bff;
+  border-radius: 2px;
+  box-sizing: border-box;
+  pointer-events: none; /* Disable pointer events during drag */
+  left: 10px;
+  right: 10px;
+  z-index: 1;
+  padding: 2px 4px;
+  color: #fff;
+  cursor: pointer;
+  }
+  
+.time-info {
+  position: absolute;
+  color: black;
+  background-color: white;
+  padding: 2px 5px;
+  font-size: 12px;
+  z-index: 20; 
+}
+  
+#control-panel {
+  position: sticky; 
+  top: 0; 
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #ccc;
+  z-index: 10;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+span {
+  color: #666;
+}
+
+.selection-rectangle.overlap-warning {
+  outline: 1px solid #FF0000;
+  border: none;
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+#request,
+#fetch {
+  margin-top: 4px;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  padding: 0 8px;
+  background-color: #66CCFF;
+  border-radius: 4px;
+  border: 0px solid #41c0ff;
+  color: #fff;
+  font-size: 12px;
+  line-height: 28px;
+  font-weight: 400;
+  text-align: center;
+}
+
+#request:hover,
+#fetch:hover {
+  background-color: #55CCFF;  
+  border-color: #55CCFF;
+}
+
+#request:active,
+#fetch:active {
+  background-color: #3b9bd7; /* Active background color */
+  color: #fff;
+}
+
+.toggle-button {
+  display: inline-block;
+  padding: 8px 10px;
+  background-color: #ccc; /* Default background color */
+  color: #000;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button:active {
+  background-color: #bbbaba; /* Active background color */
+  color: #fff;
+}
+
+/* Change background color when the checkbox is checked */
+#toggle-days-checkbox:checked + .toggle-button {
+  background-color: #4CAF50; /* New background color */
+  color: #fff;
+}
+
+#date-picker {
+  margin-top: 4px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Each date block (year, month, day) */
+.date-block {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0.5em;
+  border-right: 1px solid #eee;
+  position: relative;
+}
+/* Remove border from the last block */
+.date-block:last-child {
+  border-right: none;
+}
+
+#dynamic-text {
+  user-select: none;
+  flex: 0 0 100px;
+  text-align: center;
+  padding: 0.5em;
+  border-left: 1px solid #eee;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: normal;
+  /* text-overflow:ellipsis; */
+}
+
+.arrow {
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.8em;
+  color: #919191;
+}
+
+.value {
+  margin: 0.5em 0;
+  width: 4em;
+  height: 2em;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: text;
+}
+
+.value input {
+  font-size: 1.6em;       
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: transparent; 
+}
+
+.value input:focus {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Remove Input arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+-moz-appearance: textfield;
+}
